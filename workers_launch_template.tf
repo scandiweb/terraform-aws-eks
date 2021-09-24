@@ -165,7 +165,8 @@ resource "aws_autoscaling_group" "workers_launch_template" {
           )
 
           content {
-            instance_type = override.value
+            instance_type     = lookup(override.value, "instance_type", null)
+            weighted_capacity = lookup(override.value, "weighted_capacity", null)
           }
         }
       }
