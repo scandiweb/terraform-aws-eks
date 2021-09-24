@@ -73,7 +73,12 @@ Launch Template support is a recent addition to both AWS and this module. It mig
   worker_groups_launch_template = [
     {
       name                    = "spot-1"
-      override_instance_types = ["m5.large", "m5a.large", "m5d.large", "m5ad.large"]
+      override_instance_types = [
+        { instance_type = "m5.large" },
+        { instance_type = "m5a.large" },
+        { instance_type = "m5d.large" },
+        { instance_type = "m5ad.large" }
+      ]
       spot_instance_pools     = 4
       asg_max_size            = 5
       asg_desired_capacity    = 5
@@ -92,7 +97,11 @@ Example launch template to launch 2 on demand instances of type m5.large, and ha
 ```hcl
   worker_groups_launch_template = [{
     name                    = "mixed-demand-spot"
-    override_instance_types = ["m5.large", "m5a.large", "m4.large"]
+    override_instance_types = [
+      { instance_type = "m5.large" },
+      { instance_type = "m5a.large" },
+      { instance_type = "m4.large" },
+    ]
     root_encrypted          = true
     root_volume_size        = 50
 
