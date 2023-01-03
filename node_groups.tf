@@ -390,8 +390,9 @@ module "self_managed_node_group" {
   # Autoscaling Group
   create_autoscaling_group = try(each.value.create_autoscaling_group, var.self_managed_node_group_defaults.create_autoscaling_group, true)
 
-  name            = try(each.value.name, each.key)
-  use_name_prefix = try(each.value.use_name_prefix, var.self_managed_node_group_defaults.use_name_prefix, true)
+  name                  = try(each.value.name, each.key)
+  use_name_prefix       = try(each.value.use_name_prefix, var.self_managed_node_group_defaults.use_name_prefix, true)
+  name_prefix_separator = try(each.value.name_prefix_separator, var.self_managed_node_group_defaults.name_prefix_separator, "-")
 
   availability_zones = try(each.value.availability_zones, var.self_managed_node_group_defaults.availability_zones, null)
   subnet_ids         = try(each.value.subnet_ids, var.self_managed_node_group_defaults.subnet_ids, var.subnet_ids)
@@ -449,6 +450,7 @@ module "self_managed_node_group" {
   launch_template_id                     = try(each.value.launch_template_id, var.self_managed_node_group_defaults.launch_template_id, "")
   launch_template_name                   = try(each.value.launch_template_name, var.self_managed_node_group_defaults.launch_template_name, each.key)
   launch_template_use_name_prefix        = try(each.value.launch_template_use_name_prefix, var.self_managed_node_group_defaults.launch_template_use_name_prefix, true)
+  launch_template_name_prefix_separator  = try(each.value.launch_template_name_prefix_separator, var.self_managed_node_group_defaults.launch_template_name_prefix_separator, "-")
   launch_template_version                = try(each.value.launch_template_version, var.self_managed_node_group_defaults.launch_template_version, null)
   launch_template_default_version        = try(each.value.launch_template_default_version, var.self_managed_node_group_defaults.launch_template_default_version, null)
   update_launch_template_default_version = try(each.value.update_launch_template_default_version, var.self_managed_node_group_defaults.update_launch_template_default_version, true)
