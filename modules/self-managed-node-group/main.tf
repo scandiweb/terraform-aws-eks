@@ -308,7 +308,7 @@ resource "aws_launch_template" "this" {
   }
 
   name        = var.launch_template_use_name_prefix ? null : local.launch_template_name
-  name_prefix = var.launch_template_use_name_prefix ? "${local.launch_template_name}-" : null
+  name_prefix = var.launch_template_use_name_prefix ? "${local.launch_template_name}${var.launch_template_name_prefix_separator}" : null
 
   dynamic "network_interfaces" {
     for_each = var.network_interfaces
@@ -606,7 +606,7 @@ resource "aws_autoscaling_group" "this" {
   }
 
   name                    = var.use_name_prefix ? null : var.name
-  name_prefix             = var.use_name_prefix ? "${var.name}-" : null
+  name_prefix             = var.use_name_prefix ? "${var.name}${var.name_prefix_separator}" : null
   placement_group         = var.placement_group
   protect_from_scale_in   = var.protect_from_scale_in
   service_linked_role_arn = var.service_linked_role_arn

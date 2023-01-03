@@ -314,10 +314,22 @@ variable "use_name_prefix" {
   default     = true
 }
 
+variable "name_prefix_separator" {
+  description = "The separator to use between the prefix and the generated timestamp for resource names"
+  type        = string
+  default     = "-"
+}
+
 variable "launch_template_version" {
   description = "Launch template version. Can be version number, `$Latest`, or `$Default`"
   type        = string
   default     = null
+}
+
+variable "launch_template_name_prefix_separator" {
+  description = "The separator to use between the prefix and the generated timestamp for resource names"
+  type        = string
+  default     = "-"
 }
 
 variable "availability_zones" {
